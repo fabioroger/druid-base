@@ -22,5 +22,8 @@ RUN mkdir log && \
 	mkdir -p _config/common && \
 	mkdir -p _config/specific
 
-RUN curl -O http://static.druid.io/artifacts/releases/mysql-metadata-storage-0.10.1.tar.gz
-RUN tar xzvfC mysql-metadata-storage-0.10.1.tar.gz extensions
+RUN java -classpath "lib/*" io.druid.cli.Main tools \
+	pull-deps \
+		--no-default-hadoop \
+		-c io.druid.extensions:mysql-metadata-storage:0.10.1 \
+		-c io.druid.extensions.contrib:kafka-emitter
