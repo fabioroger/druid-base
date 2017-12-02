@@ -10,19 +10,17 @@ RUN tar -xzf druid-0.10.1-bin.tar.gz
 RUN ln -sf druid-0.10.1 current
 
 WORKDIR /opt/druid/current
-ENV LOG_DIR=var
 
-RUN mkdir log
-RUN mkdir -p $LOG_DIR/tmp;
-RUN mkdir -p $LOG_DIR/druid/indexing-logs;
-RUN mkdir -p $LOG_DIR/druid/segments;
-RUN mkdir -p $LOG_DIR/druid/segment-cache;
-RUN mkdir -p $LOG_DIR/druid/task;
-RUN mkdir -p $LOG_DIR/druid/hadoop-tmp;
-RUN mkdir -p $LOG_DIR/druid/pids;
+RUN mkdir log && \
+	mkdir -p var/tmp && \
+	mkdir -p var/druid/indexing-logs && \
+	mkdir -p var/druid/segments && \
+	mkdir -p var/druid/segment-cache && \
+	mkdir -p var/druid/task && \
+	mkdir -p var/druid/hadoop-tmp && \
+	mkdir -p var/druid/pids && \
+	mkdir -p _config/common && \
+	mkdir -p _config/specific
 
 RUN curl -O http://static.druid.io/artifacts/releases/mysql-metadata-storage-0.10.1.tar.gz
 RUN tar xzvfC mysql-metadata-storage-0.10.1.tar.gz extensions
-
-RUN mkdir -p /opt/druid/current/_config/common
-RUN mkdir -p /opt/druid/current/_config/specific
