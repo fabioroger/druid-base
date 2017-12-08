@@ -1,8 +1,5 @@
 FROM java:8
 
-RUN apt-get update
-RUN apt-get install -y s3cmd
-
 RUN mkdir -p /opt/druid
 WORKDIR /opt/druid
 RUN curl -O http://static.druid.io/artifacts/releases/druid-0.11.0-bin.tar.gz
