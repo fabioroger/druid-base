@@ -5,9 +5,9 @@ RUN apt-get install -y s3cmd
 
 RUN mkdir -p /opt/druid
 WORKDIR /opt/druid
-RUN curl -O http://static.druid.io/artifacts/releases/druid-0.10.1-bin.tar.gz
-RUN tar -xzf druid-0.10.1-bin.tar.gz
-RUN ln -sf druid-0.10.1 current
+RUN curl -O http://static.druid.io/artifacts/releases/druid-0.11.0-bin.tar.gz
+RUN tar -xzf druid-0.11.0-bin.tar.gz
+RUN ln -sf druid-0.11.0 current
 
 WORKDIR /opt/druid/current
 
@@ -25,5 +25,5 @@ RUN mkdir log && \
 RUN java -classpath "lib/*" io.druid.cli.Main tools \
 	pull-deps \
 		--no-default-hadoop \
-		-c io.druid.extensions:mysql-metadata-storage:0.10.1 \
+		-c io.druid.extensions:mysql-metadata-storage:0.11.0 \
 		-c io.druid.extensions.contrib:kafka-emitter
