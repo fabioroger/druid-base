@@ -1,6 +1,6 @@
 {
   "name": "druid-base",
-  "version": "0.11.1",
+  "version": "0.11.0-1",
   "scripts": {
     "image-build": "docker build -t fabioroger/druid-base:$npm_package_version -t fabioroger/druid-base:latest .",
     "image-push": "docker push fabioroger/druid-base:$npm_package_version && docker push fabioroger/druid-base:latest",
