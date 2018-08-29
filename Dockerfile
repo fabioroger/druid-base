@@ -1,10 +1,12 @@
 FROM java:8
 
+ARG VERSION=0.12.2
+
 RUN mkdir -p /opt/druid
 WORKDIR /opt/druid
-RUN curl -O http://static.druid.io/artifacts/releases/druid-0.12.1-bin.tar.gz
-RUN tar -xzf druid-0.12.1-bin.tar.gz
-RUN ln -sf druid-0.12.1 current
+RUN curl -O http://static.druid.io/artifacts/releases/druid-${VERSION}-bin.tar.gz
+RUN tar -xzf druid-${VERSION}-bin.tar.gz
+RUN ln -sf druid-${VERSION} current
 
 WORKDIR /opt/druid/current
 
@@ -22,5 +24,5 @@ RUN mkdir log && \
 RUN java -classpath "lib/*" io.druid.cli.Main tools \
 	pull-deps \
 		--no-default-hadoop \
-		-c io.druid.extensions:mysql-metadata-storage:0.12.1 \
+		-c io.druid.extensions:mysql-metadata-storage:${VERSION} \
 		-c io.druid.extensions.contrib:kafka-emitter
