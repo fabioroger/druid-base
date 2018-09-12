@@ -1,9 +1,9 @@
 {
-  "name": "druid-base",
-  "version": "0.11.0-1",
+  "name": "imply-base",
+  "version": "2.7.0-1",
   "scripts": {
-    "image-build": "docker build -t fabioroger/druid-base:$npm_package_version -t fabioroger/druid-base:latest .",
-    "image-push": "docker push fabioroger/druid-base:$npm_package_version && docker push fabioroger/druid-base:latest",
+    "image-build": "docker build -t fabioroger/imply-base:$npm_package_version -t fabioroger/imply-base:latest .",
+    "image-push": "docker push fabioroger/imply-base:$npm_package_version && docker push fabioroger/imply-base:latest",
     "docker": "npm run image-build && npm run image-push"
   }
 }

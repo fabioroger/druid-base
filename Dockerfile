@@ -1,26 +1,18 @@
 FROM java:8
 
-RUN mkdir -p /opt/druid
-WORKDIR /opt/druid
-RUN curl -O http://static.druid.io/artifacts/releases/druid-0.11.0-bin.tar.gz
-RUN tar -xzf druid-0.11.0-bin.tar.gz
-RUN ln -sf druid-0.11.0 current
+ENV VERSION 2.7.0
 
-WORKDIR /opt/druid/current
+RUN mkdir -p /opt/imply
+WORKDIR /opt/imply
+RUN curl -O https://static.imply.io/release/imply-${VERSION}.tar.gz && \
+	tar -xzf imply-${VERSION}.tar.gz && \
+	ln -sf imply-${VERSION} current && \
+	rm imply-${VERSION}.tar.gz && \
+	rm -rf current/dist/druid/ && \
+	rm -rf current/dist/zk && \
+	rm -rf current/dist/tranquility
 
-RUN mkdir log && \
-	mkdir -p var/tmp && \
-	mkdir -p var/druid/indexing-logs && \
-	mkdir -p var/druid/segments && \
-	mkdir -p var/druid/segment-cache && \
-	mkdir -p var/druid/task && \
-	mkdir -p var/druid/hadoop-tmp && \
-	mkdir -p var/druid/pids && \
-	mkdir -p _config/common && \
-	mkdir -p _config/specific
+WORKDIR /opt/imply/current
 
-RUN java -classpath "lib/*" io.druid.cli.Main tools \
-	pull-deps \
-		--no-default-hadoop \
-		-c io.druid.extensions:mysql-metadata-storage:0.11.0 \
-		-c io.druid.extensions.contrib:kafka-emitter
+EXPOSE 9095
+CMD ["bin/supervise", "-c", "conf/supervise/quickstart.conf"]
