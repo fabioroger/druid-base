@@ -1,6 +1,6 @@
 FROM java:8
 
-ARG VERSION=0.12.2
+ARG VERSION=0.12.3
 
 RUN mkdir -p /opt/druid
 WORKDIR /opt/druid
