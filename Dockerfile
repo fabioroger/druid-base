@@ -1,6 +1,6 @@
 FROM java:8
 
-ENV VERSION 2.7.0
+ENV VERSION 3.1.0
 
 RUN mkdir -p /opt/imply
 WORKDIR /opt/imply
